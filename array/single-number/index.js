@@ -3,13 +3,17 @@
  * @return {number}
  */
 var singleNumber = function (nums) {
-    let a = 0;
+    const map = new Map();
 
-    nums.forEach((n) => {
-        a ^= n;
-    })
+    for (const n of nums) {
+        map.set(n, (map.get(n) || 0) + 1);
+    }
 
-    return a;
+    for (const [num, count] of map.entries()) {
+        if (count === 1) {
+            return num;
+        }
+    }
 };
 
 let nums = [2, 2, 1];
